@@ -12,6 +12,7 @@ Code and resources for the [**AI Engineering 101**](https://www.youtube.com/@tec
 |---|---|
 | [`resume-reviewer/`](resume-reviewer) | **Episode 4** — a working AI app that reviews a resume and returns structured feedback. ~150 lines. |
 | [`rag-chatbot/`](rag-chatbot) | **Episodes 6 & 7** — RAG over your own documents, plus the eval set every number in episode 7 came out of. |
+| [`agent/`](agent) | **Episodes 9 & 10** — a support agent with real tools, a step limit, and a tracer that catches four ways it goes wrong. |
 | [`resources/`](resources) | **Episode 2** — the prompting patterns cheat sheet (PDF, free, no email required). |
 
 ---
@@ -33,8 +34,8 @@ Code and resources for the [**AI Engineering 101**](https://www.youtube.com/@tec
 
 **Agents**
 8. What Is an AI Agent? (Cutting Through the Hype)
-9. Build an AI Agent That Uses Real Tools
-10. Why AI Agents Fail in Production
+9. Build an AI Agent That Uses Real Tools — [code](agent)
+10. Why AI Agents Fail in Production — [tracer](agent/trace.py)
 
 ---
 
@@ -79,6 +80,22 @@ It computes keyword coverage against a specific job ad instead: fifteen lines,
 no model call, and you can check the arithmetic by hand.
 
 *When you can compute something exactly, don't ask a model to guess it.*
+
+---
+
+## Quick start — the agent
+
+```bash
+cd agent
+pip install -r requirements.txt
+cp .env.example .env          # add your key
+python run.py
+
+MAX_STEPS=3 python run.py     # watch the step limit do its job
+python inspect_runs.py        # read the traces back
+```
+
+Needs an endpoint that supports tool calling.
 
 ---
 
