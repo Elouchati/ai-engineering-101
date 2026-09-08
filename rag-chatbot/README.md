@@ -35,7 +35,8 @@ re-running `python ingest.py`.
 | `rag.py` | The whole pipeline. No Streamlit import anywhere in it, so you can drive it from a plain REPL — which is where you'll actually debug it. |
 | `ingest.py` | Reads `docs/`, chunks, embeds, writes `store.pkl`. Run once per change to your documents. |
 | `app.py` | ~60 lines of Streamlit. |
-| `docs/handbook.md` | The sample corpus the video uses. Keep it if you want to reproduce the numbers below. |
+| `eval.py` | **Episode 7** — twelve labelled questions and a scorer. Run `python eval.py` to get hit@k and top-1. |
+| `docs/handbook.md` | The sample corpus both videos use. Keep it if you want to reproduce the numbers below. |
 
 ```python
 from rag import Store, ask
@@ -99,6 +100,40 @@ Two knobs matter far more than the rest:
 One caveat: this reads text and markdown. A PDF with two columns or scanned
 pages needs real extraction first — bad extraction is bad chunking, and bad
 chunking is bad retrieval.
+
+---
+
+## Measuring it — `eval.py`
+
+Episode 7 is built on this file. Twelve questions, each labelled with the
+section that should answer it, worded the way a customer would type them rather
+than the way the handbook is written:
+
+```bash
+python eval.py        # hit@4 100%, top-1 83%
+python eval.py 1      # hit@1  83%
+```
+
+Two numbers come out. **hit@k** — was the right section anywhere in the k
+passages retrieved? **top-1** — was it the very first one? hit@k is the one that
+matters, since the model reads all k; top-1 tells you whether the ranking is
+actually good.
+
+That distinction is not academic. The blank-line chunking bug above scores
+100% on hit@4 either way — it is only visible in top-1. If you evaluate by
+eyeballing final answers, you will never find it.
+
+Measured on this eval set:
+
+| Broken how | hit@4 | top-1 |
+|---|---|---|
+| nothing — the working system | 100% | 83% |
+| chunks split on blank lines | 100% | **58%** |
+| k = 1 | **83%** | 83% |
+| questions embedded by a different model | **92%** | **58%** |
+
+Twelve questions is enough to start. Write yours before you tune anything, and
+word them the way your users talk.
 
 ---
 

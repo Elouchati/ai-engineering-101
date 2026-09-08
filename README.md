@@ -11,7 +11,7 @@ Code and resources for the [**AI Engineering 101**](https://www.youtube.com/@tec
 | | |
 |---|---|
 | [`resume-reviewer/`](resume-reviewer) | **Episode 4** — a working AI app that reviews a resume and returns structured feedback. ~150 lines. |
-| [`rag-chatbot/`](rag-chatbot) | **Episode 6** — RAG over your own documents. Chunking, embeddings, a vector store in numpy, and a bot that admits when it doesn't know. |
+| [`rag-chatbot/`](rag-chatbot) | **Episodes 6 & 7** — RAG over your own documents, plus the eval set every number in episode 7 came out of. |
 | [`resources/`](resources) | **Episode 2** — the prompting patterns cheat sheet (PDF, free, no email required). |
 
 ---
@@ -29,7 +29,7 @@ Code and resources for the [**AI Engineering 101**](https://www.youtube.com/@tec
 **Retrieval**
 5. What Is RAG? Explained With a Library Analogy
 6. I Built a RAG Chatbot That Admits When It Doesn't Know — [code](rag-chatbot)
-7. 5 RAG Mistakes That Make Your Chatbot Useless
+7. 5 RAG Mistakes That Make Your Chatbot Useless — [eval set](rag-chatbot/eval.py)
 
 **Agents**
 8. What Is an AI Agent? (Cutting Through the Hype)
