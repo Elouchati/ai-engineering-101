@@ -72,7 +72,7 @@ def verdict(s: dict) -> str:
 
 if __name__ == "__main__":
     if not TRACES.exists():
-        raise SystemExit("no traces.jsonl yet — run the agent first")
+        raise SystemExit("no traces.jsonl yet - run the agent first")
 
     rows = [summarise(json.loads(line)) for line in
             TRACES.read_text(encoding="utf-8").splitlines() if line.strip()]
