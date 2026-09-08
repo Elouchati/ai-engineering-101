@@ -11,6 +11,7 @@ Code and resources for the [**AI Engineering 101**](https://www.youtube.com/@tec
 | | |
 |---|---|
 | [`resume-reviewer/`](resume-reviewer) | **Episode 4** — a working AI app that reviews a resume and returns structured feedback. ~150 lines. |
+| [`rag-chatbot/`](rag-chatbot) | **Episode 6** — RAG over your own documents. Chunking, embeddings, a vector store in numpy, and a bot that admits when it doesn't know. |
 | [`resources/`](resources) | **Episode 2** — the prompting patterns cheat sheet (PDF, free, no email required). |
 
 ---
@@ -27,7 +28,7 @@ Code and resources for the [**AI Engineering 101**](https://www.youtube.com/@tec
 
 **Retrieval**
 5. What Is RAG? Explained With a Library Analogy
-6. Build a RAG Chatbot Over Your Own PDFs
+6. I Built a RAG Chatbot That Admits When It Doesn't Know — [code](rag-chatbot)
 7. 5 RAG Mistakes That Make Your Chatbot Useless
 
 **Agents**
@@ -49,6 +50,21 @@ streamlit run app.py
 Works with any OpenAI-compatible chat completions endpoint. For OpenAI itself,
 leave `API_BASE` blank; for anything else — Groq, Together, OpenRouter, a local
 server — point `API_BASE` at its URL.
+
+---
+
+## Quick start — the RAG chatbot
+
+```bash
+cd rag-chatbot
+pip install -r requirements.txt
+cp .env.example .env          # add your key
+python ingest.py              # builds the index from docs/
+streamlit run app.py
+```
+
+Embeddings run locally by default — ~90 MB downloaded once, then free and
+offline. Only the final answer needs a key.
 
 ---
 
